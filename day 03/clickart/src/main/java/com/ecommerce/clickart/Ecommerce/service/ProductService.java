@@ -42,4 +42,22 @@ public class ProductService {
 
         return dtoList;
     }
+
+    //READ by ID
+    public ProductDTO getProductById(int id){
+        for(ProductEntity entity: productList){
+            if (entity.getId() == id){
+                ProductDTO dto = new ProductDTO();
+
+                dto.setId(entity.getId());
+                dto.setName(entity.getName());
+                dto.setPrice(entity.getPrice());
+                dto.setQuantity(entity.getQuantity());
+
+                return dto;
+
+            }
+        }
+        return null;
+    }
 }
