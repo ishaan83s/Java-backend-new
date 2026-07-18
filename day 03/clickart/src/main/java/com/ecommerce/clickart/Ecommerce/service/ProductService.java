@@ -60,4 +60,18 @@ public class ProductService {
         }
         return null;
     }
+
+    //UPDATE
+    public ProductDTO updateProduct(int id , ProductDTO dto){
+        for(ProductEntity entity:productList){
+            if(entity.getId()==id){
+                entity.setName(dto.getName());
+                entity.setPrice(dto.getPrice());
+                entity.setQuantity(dto.getQuantity());
+
+                return dto;
+            }
+        }
+        return null;
+    }
 }
