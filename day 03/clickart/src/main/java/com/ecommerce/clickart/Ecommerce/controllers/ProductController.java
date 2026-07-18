@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping
 public class ProductController {
 
     @Autowired
@@ -38,31 +38,41 @@ public class ProductController {
 
     // READ BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getProductById(@PathVariable int id) {
-        ProductDTO dto = productService.getProductById(id);
-        if (dto != null) {
-            return new ResponseEntity<>(dto, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Returns 404 if product doesn't exist
+    public ProductDTO getProductById(@PathVariable int id){
+        return productService.getProductById(id);
     }
+//    public ResponseEntity<ProductDTO> getProductById(@PathVariable int id) {
+//        ProductDTO dto = productService.getProductById(id);
+//        if (dto != null) {
+//            return new ResponseEntity<>(dto, HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Returns 404 if product doesn't exist
+//    }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable int id, @RequestBody ProductDTO dto) {
-        ProductDTO updatedProduct = productService.updateProduct(id, dto);
-        if (updatedProduct != null) {
-            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ProductDTO updateProduct(@PathVariable int id , @RequestBody ProductDTO dto){
+        return productService.updateProduct(id,dto);
     }
+
+//    public ResponseEntity<ProductDTO> updateProduct(@PathVariable int id, @RequestBody ProductDTO dto) {
+//        ProductDTO updatedProduct = productService.updateProduct(id, dto);
+//        if (updatedProduct != null) {
+//            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
-        boolean isDeleted = productService.deleteProduct(id);
-        if (isDeleted) {
-            return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+    public boolean deleteProduct(@PathVariable int id){
+        return productService.deleteProduct(id);
     }
+//    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
+//        boolean isDeleted = productService.deleteProduct(id);
+//        if (isDeleted) {
+//            return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+//    }
 }
