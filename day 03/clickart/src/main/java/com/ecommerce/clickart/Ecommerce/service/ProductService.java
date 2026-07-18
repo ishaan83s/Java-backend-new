@@ -80,9 +80,9 @@ public class ProductService {
         for (ProductEntity entity : productList) {
             if (entity.getId() == id) {
                 productList.remove(entity);
-                return true; // Successfully found and removed
+                return true;
             }
         }
-        return false; // Product with this ID didn't exist
+        return false;
     }
 }
